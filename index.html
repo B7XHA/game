@@ -1,110 +1,141 @@
-Enter<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>غرفة الألعاب</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>غرفة الألعاب التفاعلية</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Tajawal', sans-serif;
+            font-family: 'Cairo', 'Tajawal', sans-serif;
         }
         
         body {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
-            padding: 20px;
+            padding: 0;
+            margin: 0;
         }
         
         .game-container {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             width: 100%;
-            max-width: 1200px;
-            overflow: hidden;
+            height: 100vh;
             display: flex;
             flex-direction: row-reverse;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
         }
         
-        /* القائمة الجانبية */
+        /* القائمة الجانبية - تصميم عصري */
         .sidebar {
-            width: 280px;
-            background: #2d3748;
+            width: 320px;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
             color: white;
-            padding: 20px;
             display: flex;
             flex-direction: column;
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: -5px 0 20px rgba(0, 0, 0, 0.5);
         }
         
         .sidebar-header {
-            padding-bottom: 20px;
-            border-bottom: 1px solid #4a5568;
-            margin-bottom: 20px;
+            padding: 25px 20px;
+            background: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .sidebar-header h3 {
-            font-size: 18px;
-            color: #cbd5e0;
-            margin-bottom: 10px;
+        .sidebar-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sidebar-header h2 span {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: normal;
         }
         
         .room-info {
-            background: #1a202c;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
             padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 20px;
+            margin-top: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .room-info p {
-            margin: 5px 0;
+        .room-info-item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
             font-size: 14px;
-            color: #a0aec0;
+            color: #cbd5e1;
         }
         
-        .room-info span {
-            color: #ecc94b;
+        .room-info-item span {
+            color: #fbbf24;
             font-weight: bold;
+            background: rgba(251, 191, 36, 0.2);
+            padding: 3px 10px;
+            border-radius: 20px;
+        }
+        
+        .section-title {
+            padding: 20px 20px 10px;
+            font-size: 16px;
+            color: #94a3b8;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
         
         .players-list {
             flex: 1;
             overflow-y: auto;
-            max-height: 500px;
+            padding: 0 15px 15px;
         }
         
-        .player-item {
+        .player-card {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
-            padding: 10px;
-            background: #1a202c;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            transition: all 0.3s;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
         }
         
-        .player-item:hover {
-            background: #4a5568;
+        .player-card:hover {
             transform: translateX(-5px);
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #3b82f6;
         }
         
         .player-avatar {
-            width: 40px;
-            height: 40px;
-            background: #4a5568;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
             border-radius: 50%;
-            margin-left: 10px;
+            margin-left: 15px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #cbd5e0;
             font-weight: bold;
-            font-size: 18px;
+            font-size: 20px;
+            color: white;
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
         }
         
         .player-info {
@@ -112,166 +143,302 @@ Enter<!DOCTYPE html>
         }
         
         .player-name {
-            font-weight: bold;
-            font-size: 14px;
+            font-weight: 700;
+            font-size: 16px;
+            margin-bottom: 5px;
             display: flex;
             align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            padding: 3px 8px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        
+        .badge.creator {
+            background: #fbbf24;
+            color: #0f172a;
+        }
+        
+        .badge.player {
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .badge.spectator {
+            background: #64748b;
+            color: white;
+        }
+        
+        .badge.online {
+            background: #10b981;
+            color: white;
         }
         
         .player-status {
             font-size: 12px;
-            color: #a0aec0;
-        }
-        
-        .admin-badge {
-            background: #ecc94b;
-            color: #1a202c;
-            font-size: 10px;
-            padding: 2px 6px;
-            border-radius: 10px;
-            margin-right: 8px;
-            font-weight: bold;
-        }
-        
-        .spectator-badge {
-            background: #48bb78;
-            color: white;
-            font-size: 10px;
-            padding: 2px 6px;
-            border-radius: 10px;
-            margin-right: 8px;
-        }
-        
-        .player-ready {
-            color: #48bb78;
-            font-size: 12px;
-            margin-right: 5px;
+            color: #94a3b8;
         }
         
         /* المحتوى الرئيسي */
         .main-content {
             flex: 1;
-            padding: 30px;
-            background: #f7fafc;
+            display: flex;
+            flex-direction: column;
+            background: rgba(255, 255, 255, 0.02);
+            overflow: hidden;
         }
         
         .game-header {
+            padding: 20px 30px;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #e2e8f0;
         }
         
         .game-title {
-            font-size: 24px;
-            color: #2d3748;
-            font-weight: bold;
+            font-size: 28px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #3b82f6, #8b5cf6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         
         .game-status {
-            background: #ecc94b;
-            color: #1a202c;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-weight: bold;
+            background: rgba(59, 130, 246, 0.2);
+            padding: 8px 20px;
+            border-radius: 30px;
+            border: 1px solid #3b82f6;
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
         }
         
         .game-area {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            min-height: 300px;
+            flex: 1;
+            padding: 30px;
+            overflow-y: auto;
         }
         
-        .game-selection {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            justify-content: center;
+        /* شاشة اختيار اللعبة */
+        .selection-screen {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .selection-title {
+            font-size: 32px;
+            color: white;
+            margin-bottom: 30px;
+            font-weight: 700;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
         }
         
         .game-card {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            width: 200px;
-            text-align: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 25px;
+            padding: 30px 20px;
             cursor: pointer;
-            transition: all 0.3s;
-            opacity: 0.5;
-            pointer-events: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
         
-        .game-card.active {
-            opacity: 1;
-            pointer-events: all;
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #3b82f6, #8b5cf6);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
         }
         
-        .game-card.active:hover {
+        .game-card:hover::before {
+            transform: translateX(0);
+        }
+        
+        .game-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.4);
+            border-color: #3b82f6;
         }
         
         .game-card.selected {
-            border: 3px solid #ecc94b;
-            transform: scale(1.05);
+            border: 2px solid #3b82f6;
+            background: rgba(59, 130, 246, 0.1);
         }
         
         .game-icon {
-            font-size: 48px;
-            margin-bottom: 10px;
+            font-size: 64px;
+            margin-bottom: 15px;
         }
         
         .game-name {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 5px;
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
         }
         
-        .players-required {
-            font-size: 12px;
-            opacity: 0.9;
+        .game-desc {
+            color: #94a3b8;
+            font-size: 14px;
         }
         
-        .game-board {
+        .vote-section {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .vote-title {
+            font-size: 20px;
+            color: white;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        .vote-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        
+        .vote-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .vote-btn:hover:not(:disabled) {
+            background: #3b82f6;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+        
+        .vote-btn.voted {
+            background: #3b82f6;
+            border-color: #3b82f6;
+        }
+        
+        .vote-btn.selected {
+            background: #fbbf24;
+            color: #0f172a;
+            border-color: #fbbf24;
+        }
+        
+        .vote-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .vote-status {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        
+        .start-game-btn {
+            background: linear-gradient(135deg, #fbbf24, #f59e0b);
+            color: #0f172a;
+            border: none;
+            padding: 18px 40px;
+            border-radius: 50px;
+            font-size: 20px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            max-width: 300px;
+            margin: 30px auto 0;
             display: none;
         }
         
-        .game-board.active {
+        .start-game-btn.active {
             display: block;
+            animation: pulse 2s infinite;
         }
         
-        /* لعبة XO */
+        .start-game-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(245, 158, 11, 0.4);
+        }
+        
+        /* شاشة اللعب */
+        .play-screen {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
         .xo-board {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 10px;
-            max-width: 300px;
-            margin: 0 auto;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 30px;
+            margin-bottom: 30px;
         }
         
         .xo-cell {
             aspect-ratio: 1;
-            background: #edf2f7;
-            border: 2px solid #cbd5e0;
-            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
+            font-size: 64px;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s;
+            color: white;
         }
         
         .xo-cell:hover:not(.disabled) {
-            background: #e2e8f0;
+            background: #3b82f6;
             transform: scale(1.05);
+            border-color: #3b82f6;
+        }
+        
+        .xo-cell.x {
+            color: #ef4444;
+        }
+        
+        .xo-cell.o {
+            color: #3b82f6;
         }
         
         .xo-cell.disabled {
@@ -279,119 +446,43 @@ Enter<!DOCTYPE html>
             cursor: not-allowed;
         }
         
-        .xo-cell.x {
-            color: #e53e3e;
-        }
-        
-        .xo-cell.o {
-            color: #3182ce;
-        }
-        
-        .waiting-message {
-            text-align: center;
-            padding: 40px;
-            color: #718096;
-        }
-        
-        .players-vote {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        
-        .vote-btn {
-            background: #48bb78;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            opacity: 0.5;
-            pointer-events: none;
-        }
-        
-        .vote-btn.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-        
-        .vote-btn.active:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.4);
-        }
-        
-        .vote-btn.selected {
-            background: #2d3748;
-        }
-        
-        .vote-btn.voted {
-            background: #ecc94b;
-            color: #1a202c;
-        }
-        
-        .vote-status {
-            text-align: center;
-            margin: 10px 0;
-            color: #718096;
-            font-size: 14px;
-        }
-        
-        .start-game-btn {
-            background: #ecc94b;
-            color: #1a202c;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 10px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-            width: 100%;
-            margin-top: 20px;
-            display: none;
-        }
-        
-        .start-game-btn.active {
-            display: block;
-        }
-        
-        .start-game-btn.active:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(236, 201, 75, 0.4);
-        }
-        
+        /* الدردشة */
         .chat-area {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 20px 30px;
         }
         
         .chat-messages {
-            height: 150px;
+            height: 120px;
             overflow-y: auto;
+            margin-bottom: 15px;
             padding: 10px;
-            background: #f7fafc;
-            border-radius: 10px;
-            margin-bottom: 10px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
         }
         
         .chat-message {
-            margin-bottom: 10px;
-            padding: 8px 12px;
-            background: #e2e8f0;
-            border-radius: 10px;
+            margin-bottom: 8px;
+            padding: 8px 15px;
+            background: rgba(59, 130, 246, 0.2);
+            border-radius: 20px;
             max-width: 80%;
+            color: white;
+            font-size: 14px;
         }
         
         .chat-message.own {
-            background: #667eea;
-            color: white;
+            background: #3b82f6;
             margin-right: auto;
+        }
+        
+        .chat-message.system {
+            background: #fbbf24;
+            color: #0f172a;
+            text-align: center;
+            max-width: 100%;
         }
         
         .chat-input-area {
@@ -401,30 +492,70 @@ Enter<!DOCTYPE html>
         
         .chat-input {
             flex: 1;
-            padding: 10px;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
+            padding: 12px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            color: white;
             font-size: 14px;
         }
         
+        .chat-input:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+        
         .chat-send {
-            background: #667eea;
+            background: #3b82f6;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 10px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
             cursor: pointer;
             transition: all 0.3s;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .chat-send:hover {
-            background: #5a67d8;
+            background: #2563eb;
+            transform: scale(1.1);
         }
         
         .hidden {
             display: none !important;
         }
         
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: #3b82f6;
+            border-radius: 10px;
+        }
+        
+        /* Responsive */
         @media (max-width: 768px) {
             .game-container {
                 flex-direction: column;
@@ -432,6 +563,11 @@ Enter<!DOCTYPE html>
             
             .sidebar {
                 width: 100%;
+                height: 40vh;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
@@ -441,257 +577,216 @@ Enter<!DOCTYPE html>
         <!-- القائمة الجانبية -->
         <div class="sidebar">
             <div class="sidebar-header">
-                <h3>معلومات الغرفة</h3>
+                <h2>
+                    🎮 غرفة الألعاب
+                    <span id="roomId">...</span>
+                </h2>
                 <div class="room-info">
-                    <p>👤 الآيدي: <span id="roomId">...</span></p>
-                    <p>👥 عدد اللاعبين: <span id="playerCount">0</span></p>
+                    <div class="room-info-item">
+                        <span>👥 المشاهدون</span>
+                        <span id="playerCount">0</span>
+                    </div>
+                    <div class="room-info-item">
+                        <span>🎯 الحالة</span>
+                        <span id="roomStatus">انتظار</span>
+                    </div>
                 </div>
             </div>
             
-            <h3>اللاعبون والمتفرجون</h3>
-            <div class="players-list" id="playersList">
-                <!-- سيتم إضافة اللاعبين هنا ديناميكياً -->
-            </div>
+            <div class="section-title">👤 اللاعبون</div>
+            <div class="players-list" id="playersList"></div>
         </div>
         
         <!-- المحتوى الرئيسي -->
         <div class="main-content">
             <div class="game-header">
-                <div class="game-title" id="gameTitle">غرفة الألعاب</div>
+                <div class="game-title" id="gameTitle">🎮 اختار لعبتك</div>
                 <div class="game-status" id="gameStatus">في انتظار اللاعبين...</div>
             </div>
             
-            <!-- منطقة اختيار اللعبة -->
-            <div class="game-area" id="gameSelectionArea">
-                <h3 style="margin-bottom: 20px; color: #2d3748;">اختر اللعبة</h3>
-                <div class="game-selection" id="gameSelection">
-                    <div class="game-card" data-game="xo" id="gameXOCard">
-                        <div class="game-icon">❌⭕</div>
-                        <div class="game-name">XO</div>
-                        <div class="players-required">يحتاج لاعبين</div>
+            <div class="game-area">
+                <!-- شاشة اختيار اللعبة -->
+                <div id="selectionScreen" class="selection-screen">
+                    <div class="selection-title">اختر اللعبة</div>
+                    <div class="games-grid" id="gamesGrid">
+                        <div class="game-card" data-game="xo" id="gameXOCard">
+                            <div class="game-icon">❌⭕</div>
+                            <div class="game-name">XO</div>
+                            <div class="game-desc">اللعبة الكلاسيكية</div>
+                        </div>
+                        <div class="game-card" data-game="connect4" id="gameConnect4Card">
+                            <div class="game-icon">🟡🔴</div>
+                            <div class="game-name">Connect 4</div>
+                            <div class="game-desc">قريباً</div>
+                        </div>
                     </div>
-                    <div class="game-card" data-game="connect4" id="gameConnect4Card">
-                        <div class="game-icon">🟡🔴</div>
-                        <div class="game-name">Connect 4</div>
-                        <div class="players-required">يحتاج لاعبين</div>
-                    </div>
-                    <div class="game-card" data-game="tic-tac-toe" id="gameTicTacToeCard">
-                        <div class="game-icon">🎮</div>
-                        <div class="game-name">Tic Tac Toe</div>
-                        <div class="players-required">يحتاج لاعبين</div>
-                    </div>
-                </div>
-                
-                <!-- نظام التصويت -->
-                <div class="vote-status" id="voteStatus"></div>
-                <div class="players-vote" id="playersVote">
-                    <button class="vote-btn" data-game="xo" id="voteXOBtn">❌⭕ XO</button>
-                    <button class="vote-btn" data-game="connect4" id="voteConnect4Btn">🟡🔴 Connect 4</button>
-                    <button class="vote-btn" data-game="tic-tac-toe" id="voteTicTacToeBtn">🎮 Tic Tac Toe</button>
-                </div>
-                
-                <button class="start-game-btn" id="startGameBtn">بدء اللعبة</button>
-            </div>
-            
-            <!-- منطقة اللعبة -->
-            <div class="game-area hidden" id="gamePlayArea">
-                <div class="game-board active" id="xoBoard">
-                    <div class="xo-board" id="xoBoardGrid">
-                        <!-- سيتم إنشاء خلايا XO هنا -->
+                    
+                    <div class="vote-section">
+                        <div class="vote-title">🗳️ تصويت اللاعبين</div>
+                        <div class="vote-buttons" id="voteButtons">
+                            <button class="vote-btn" data-game="xo" id="voteXOBtn">
+                                <span>❌⭕</span> XO
+                            </button>
+                        </div>
+                        <div class="vote-status" id="voteStatus">في انتظار تصويت اللاعبين...</div>
+                        <button class="start-game-btn" id="startGameBtn">▶️ بدء اللعبة</button>
                     </div>
                 </div>
                 
-                <div class="game-board" id="connect4Board">
-                    <div style="text-align: center; padding: 50px; color: #718096;">
-                        قريباً...
-                    </div>
-                </div>
-                
-                <div class="game-board" id="ticTacToeBoard">
-                    <div style="text-align: center; padding: 50px; color: #718096;">
-                        قريباً...
-                    </div>
+                <!-- شاشة اللعب -->
+                <div id="playScreen" class="play-screen hidden">
+                    <div class="xo-board" id="xoBoard"></div>
                 </div>
             </div>
             
-            <!-- منطقة الدردشة -->
+            <!-- الدردشة -->
             <div class="chat-area">
                 <div class="chat-messages" id="chatMessages">
-                    <div class="chat-message">مرحباً بكم في غرفة الألعاب!</div>
+                    <div class="chat-message system">مرحباً بكم في غرفة الألعاب</div>
                 </div>
                 <div class="chat-input-area">
                     <input type="text" class="chat-input" id="chatInput" placeholder="اكتب رسالة...">
-                    <button class="chat-send" id="chatSendBtn">إرسال</button>
+                    <button class="chat-send" id="chatSendBtn">📤</button>
                 </div>
             </div>
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.4/socket.io.js"></script>
     <script>
         // الحصول على معلمات URL
         const urlParams = new URLSearchParams(window.location.search);
         const roomId = urlParams.get('room');
         const userId = urlParams.get('user');
         const userName = urlParams.get('name') || 'زائر';
+        const user2Id = urlParams.get('user2');
+        const user2Name = urlParams.get('name2') || 'اللاعب الثاني';
         const creatorId = urlParams.get('creator');
         
-        // التحقق من المعلمات
         if (!roomId || !userId) {
-            document.body.innerHTML = '<div style="text-align: center; padding: 50px; color: white;">رابط غير صالح</div>';
-            throw new Error('Missing required parameters');
+            document.body.innerHTML = '<div style="color: white; text-align: center; padding: 50px;">❌ رابط غير صالح</div>';
+            throw new Error('Missing parameters');
         }
         
         // حالة اللعبة
         const state = {
-            roomId,
-            userId,
-            userName,
-            creatorId,
+            roomId, userId, userName, user2Id, user2Name, creatorId,
             users: {},
-            players: [],
-            spectators: [],
             gameSelected: null,
             votes: {},
             gameStarted: false,
-            xoBoard: ['', '', '', '', '', '', '', '', ''],
+            xoBoard: Array(9).fill(''),
             xoCurrentPlayer: null,
             xoPlayers: {},
-            socket: null
+            isPlayer: false
         };
+        
+        // تحديد إذا كان المستخدم لاعباً أم متفرجاً
+        if (userId === creatorId || userId === user2Id) {
+            state.isPlayer = true;
+            state.users[userId] = {
+                id: userId,
+                name: userName,
+                isCreator: userId === creatorId,
+                isPlayer: true,
+                joined: true
+            };
+            
+            if (user2Id) {
+                state.users[user2Id] = {
+                    id: user2Id,
+                    name: user2Name,
+                    isCreator: user2Id === creatorId,
+                    isPlayer: true,
+                    joined: false
+                };
+            }
+        } else {
+            // متفرج
+            state.users[userId] = {
+                id: userId,
+                name: userName,
+                isCreator: false,
+                isPlayer: false,
+                joined: true
+            };
+        }
         
         // عناصر DOM
         const elements = {
             roomId: document.getElementById('roomId'),
             playerCount: document.getElementById('playerCount'),
             playersList: document.getElementById('playersList'),
+            roomStatus: document.getElementById('roomStatus'),
             gameStatus: document.getElementById('gameStatus'),
-            gameSelectionArea: document.getElementById('gameSelectionArea'),
-            gamePlayArea: document.getElementById('gamePlayArea'),
+            selectionScreen: document.getElementById('selectionScreen'),
+            playScreen: document.getElementById('playScreen'),
             startGameBtn: document.getElementById('startGameBtn'),
             voteStatus: document.getElementById('voteStatus'),
-            xoBoardGrid: document.getElementById('xoBoardGrid'),
+            xoBoard: document.getElementById('xoBoard'),
             chatMessages: document.getElementById('chatMessages'),
             chatInput: document.getElementById('chatInput'),
-            chatSendBtn: document.getElementById('chatSendBtn')
-        };
-        
-        // أزرار التصويت
-        const voteBtns = {
-            xo: document.getElementById('voteXOBtn'),
-            connect4: document.getElementById('voteConnect4Btn'),
-            ticTacToe: document.getElementById('voteTicTacToeBtn')
+            chatSendBtn: document.getElementById('chatSendBtn'),
+            gameXOCard: document.getElementById('gameXOCard'),
+            voteXOBtn: document.getElementById('voteXOBtn')
         };
         
         // تهيئة
         function init() {
             elements.roomId.textContent = roomId;
-            
-            // الاتصال بالخادم
-            connectToServer();
-            
-            // إضافة مستمعي الأحداث
-            addEventListeners();
-        }
-        
-        // الاتصال بالخادم
-        function connectToServer() {
-            // هنا يتم الاتصال بالخادم الخاص بك
-            // استخدم WebSocket أو Socket.IO
-            console.log('Connecting to server...');
-            
-            // مثال باستخدام WebSocket (يجب تعديل الرابط)
-            // state.socket = new WebSocket(`wss://yourserver.com/ws?room=${roomId}&user=${userId}`);
-            
-            // محاكاة للاختبار
-            simulateServer();
-        }
-        
-        // محاكاة الخادم للاختبار
-        function simulateServer() {
-            // إضافة المستخدم الحالي
-            state.users[userId] = {
-                id: userId,
-                name: userName,
-                isCreator: userId === creatorId,
-                isPlayer: false,
-                isSpectator: true,
-                ready: false
-            };
-            
-            // تحديث القوائم
             updatePlayersList();
+            addEventListeners();
+            
+            // محاكاة انضمام اللاعب الثاني بعد ثانية
+            if (user2Id && userId !== user2Id) {
+                setTimeout(() => {
+                    if (state.users[user2Id]) {
+                        state.users[user2Id].joined = true;
+                        updatePlayersList();
+                        addSystemMessage(`🎮 انضم ${user2Name} إلى الغرفة`);
+                    }
+                }, 1000);
+            }
         }
         
-        // إضافة مستمعي الأحداث
         function addEventListeners() {
-            // أزرار التصويت
-            for (const [game, btn] of Object.entries(voteBtns)) {
-                btn.addEventListener('click', () => voteForGame(game));
-            }
-            
-            // زر بدء اللعبة
+            elements.gameXOCard.addEventListener('click', () => voteForGame('xo'));
+            elements.voteXOBtn.addEventListener('click', () => voteForGame('xo'));
             elements.startGameBtn.addEventListener('click', startGame);
-            
-            // إرسال الرسائل
             elements.chatSendBtn.addEventListener('click', sendChatMessage);
             elements.chatInput.addEventListener('keypress', (e) => {
                 if (e.key === 'Enter') sendChatMessage();
             });
         }
         
-        // التصويت للعبة
         function voteForGame(game) {
-            if (state.gameStarted) return;
+            if (state.gameStarted || !state.isPlayer) return;
             
             state.votes[userId] = game;
-            
-            // تحديث واجهة التصويت
             updateVoteUI();
-            
-            // التحقق من إمكانية بدء اللعبة
             checkCanStartGame();
+            addSystemMessage(`${userName} صوت للعبة ${game === 'xo' ? 'XO' : game}`);
         }
         
-        // تحديث واجهة التصويت
         function updateVoteUI() {
-            const players = Object.values(state.users).filter(u => u.isPlayer);
+            const players = Object.values(state.users).filter(u => u.isPlayer && u.joined);
+            const votesForXO = Object.values(state.votes).filter(v => v === 'xo').length;
             
-            for (const [game, btn] of Object.entries(voteBtns)) {
-                const votes = Object.values(state.votes).filter(v => v === game).length;
-                const totalPlayers = players.length;
-                
-                if (totalPlayers > 0) {
-                    const percentage = (votes / totalPlayers) * 100;
-                    btn.textContent = `${btn.textContent.split('(')[0]} (${votes}/${totalPlayers})`;
-                    
-                    if (votes === totalPlayers) {
-                        btn.classList.add('selected');
-                    } else {
-                        btn.classList.remove('selected');
-                    }
-                }
-            }
-            
-            // تحديث حالة التصويت
             if (players.length === 2) {
-                const votes1 = state.votes[players[0]?.id];
-                const votes2 = state.votes[players[1]?.id];
+                elements.voteXOBtn.textContent = `❌⭕ XO (${votesForXO}/2)`;
                 
-                if (votes1 && votes2) {
-                    if (votes1 === votes2) {
-                        elements.voteStatus.textContent = `✅ تم الاتفاق على لعبة ${getGameName(votes1)}`;
-                        state.gameSelected = votes1;
-                    } else {
-                        elements.voteStatus.textContent = '❌ لم يتم الاتفاق بعد';
-                    }
+                if (votesForXO === 2) {
+                    elements.voteXOBtn.classList.add('selected');
+                    state.gameSelected = 'xo';
+                    elements.voteStatus.textContent = '✅ تم الاتفاق على لعبة XO';
+                } else {
+                    elements.voteXOBtn.classList.remove('selected');
+                    elements.voteStatus.textContent = '⏳ في انتظار تصويت اللاعب الآخر';
                 }
             }
         }
         
-        // التحقق من إمكانية بدء اللعبة
         function checkCanStartGame() {
-            const players = Object.values(state.users).filter(u => u.isPlayer);
+            const players = Object.values(state.users).filter(u => u.isPlayer && u.joined);
             
             if (players.length === 2) {
                 const votes1 = state.votes[players[0]?.id];
@@ -699,43 +794,23 @@ Enter<!DOCTYPE html>
                 
                 if (votes1 && votes2 && votes1 === votes2) {
                     elements.startGameBtn.classList.add('active');
-                } else {
-                    elements.startGameBtn.classList.remove('active');
                 }
             }
         }
         
-        // بدء اللعبة
         function startGame() {
             if (!state.gameSelected) return;
             
             state.gameStarted = true;
-            elements.gameSelectionArea.classList.add('hidden');
-            elements.gamePlayArea.classList.remove('hidden');
-            elements.gameStatus.textContent = `اللعبة: ${getGameName(state.gameSelected)}`;
+            elements.selectionScreen.classList.add('hidden');
+            elements.playScreen.classList.remove('hidden');
+            elements.gameStatus.textContent = 'اللعبة: XO';
             
-            // تهيئة اللعبة المختارة
-            initGame(state.gameSelected);
+            initXOGame();
         }
         
-        // تهيئة اللعبة
-        function initGame(game) {
-            switch(game) {
-                case 'xo':
-                    initXOGame();
-                    break;
-                case 'connect4':
-                    // تهيئة Connect 4
-                    break;
-                case 'tic-tac-toe':
-                    // تهيئة Tic Tac Toe
-                    break;
-            }
-        }
-        
-        // تهيئة لعبة XO
         function initXOGame() {
-            const players = Object.values(state.users).filter(u => u.isPlayer);
+            const players = Object.values(state.users).filter(u => u.isPlayer && u.joined);
             if (players.length >= 2) {
                 state.xoPlayers = {
                     [players[0].id]: 'X',
@@ -745,174 +820,157 @@ Enter<!DOCTYPE html>
                 
                 createXOBoard();
                 updateGameStatus();
+                addSystemMessage('بدأت لعبة XO! دور ' + players[0].name);
             }
         }
         
-        // إنشاء لوحة XO
         function createXOBoard() {
-            elements.xoBoardGrid.innerHTML = '';
+            elements.xoBoard.innerHTML = '';
             
             for (let i = 0; i < 9; i++) {
                 const cell = document.createElement('div');
                 cell.className = 'xo-cell';
                 cell.dataset.index = i;
-                cell.textContent = state.xoBoard[i];
                 
                 if (state.xoBoard[i]) {
+                    cell.textContent = state.xoBoard[i];
                     cell.classList.add('disabled', state.xoBoard[i].toLowerCase());
+                } else {
+                    cell.textContent = '';
                 }
                 
                 cell.addEventListener('click', () => makeXOMove(i));
-                elements.xoBoardGrid.appendChild(cell);
+                elements.xoBoard.appendChild(cell);
             }
         }
         
-        // تنفيذ حركة في XO
         function makeXOMove(index) {
-            if (!state.gameStarted || state.xoBoard[index] || state.xoCurrentPlayer !== userId) {
+            if (!state.gameStarted || state.xoBoard[index] || !state.isPlayer || state.xoCurrentPlayer !== userId) {
                 return;
             }
             
             const symbol = state.xoPlayers[userId];
             state.xoBoard[index] = symbol;
             
-            // تحديث اللوحة
-            const cells = elements.xoBoardGrid.children;
-            cells[index].textContent = symbol;
-            cells[index].classList.add('disabled', symbol.toLowerCase());
+            updateXOBoard();
             
-            // التحقق من الفوز
             const winner = checkXOWinner();
             if (winner) {
-                elements.gameStatus.textContent = `🏆 الفائز: ${winner === 'X' ? 'اللاعب X' : 'اللاعب O'}`;
+                const winnerName = winner === 'X' ? 
+                    Object.keys(state.xoPlayers).find(key => state.xoPlayers[key] === 'X') : 
+                    Object.keys(state.xoPlayers).find(key => state.xoPlayers[key] === 'O');
+                
+                elements.gameStatus.textContent = `🏆 الفائز: ${state.users[winnerName]?.name || 'اللاعب'}`;
                 state.gameStarted = false;
+                addSystemMessage(`🎉 فاز ${state.users[winnerName]?.name || 'اللاعب'} باللعبة!`);
                 return;
             }
             
-            // التحقق من التعادل
             if (!state.xoBoard.includes('')) {
                 elements.gameStatus.textContent = '🤝 تعادل!';
                 state.gameStarted = false;
+                addSystemMessage('🤝 اللعبة انتهت بالتعادل');
                 return;
             }
             
-            // تبديل اللاعب
-            const players = Object.values(state.users).filter(u => u.isPlayer);
+            const players = Object.values(state.users).filter(u => u.isPlayer && u.joined);
             state.xoCurrentPlayer = state.xoCurrentPlayer === players[0].id ? players[1].id : players[0].id;
             
             updateGameStatus();
         }
         
-        // التحقق من الفوز في XO
+        function updateXOBoard() {
+            const cells = elements.xoBoard.children;
+            for (let i = 0; i < 9; i++) {
+                cells[i].textContent = state.xoBoard[i];
+                if (state.xoBoard[i]) {
+                    cells[i].classList.add('disabled', state.xoBoard[i].toLowerCase());
+                } else {
+                    cells[i].classList.remove('disabled', 'x', 'o');
+                }
+            }
+        }
+        
         function checkXOWinner() {
             const winPatterns = [
-                [0, 1, 2], [3, 4, 5], [6, 7, 8], // أفقية
-                [0, 3, 6], [1, 4, 7], [2, 5, 8], // رأسية
-                [0, 4, 8], [2, 4, 6] // قطرية
+                [0,1,2], [3,4,5], [6,7,8],
+                [0,3,6], [1,4,7], [2,5,8],
+                [0,4,8], [2,4,6]
             ];
             
             for (const pattern of winPatterns) {
-                const [a, b, c] = pattern;
+                const [a,b,c] = pattern;
                 if (state.xoBoard[a] && state.xoBoard[a] === state.xoBoard[b] && state.xoBoard[a] === state.xoBoard[c]) {
                     return state.xoBoard[a];
                 }
             }
-            
             return null;
         }
         
-        // تحديث حالة اللعبة
         function updateGameStatus() {
             const player = Object.values(state.users).find(u => u.id === state.xoCurrentPlayer);
             elements.gameStatus.textContent = `دور: ${player?.name || 'اللاعب الآخر'}`;
         }
         
-        // تحديث قائمة اللاعبين
         function updatePlayersList() {
-            const players = Object.values(state.users).filter(u => u.isPlayer);
-            const spectators = Object.values(state.users).filter(u => !u.isPlayer);
-            
+            const players = Object.values(state.users);
             let html = '';
             
-            // عرض اللاعبين
-            if (players.length > 0) {
-                html += '<div style="margin-bottom: 10px;"><strong>👥 اللاعبون:</strong></div>';
-                players.forEach(player => {
-                    html += createPlayerHTML(player, true);
-                });
-            }
-            
-            // عرض المتفرجين
-            if (spectators.length > 0) {
-                html += '<div style="margin: 15px 0 10px 0;"><strong>👀 المتفرجون:</strong></div>';
-                spectators.forEach(spectator => {
-                    html += createPlayerHTML(spectator, false);
-                });
-            }
+            players.forEach(player => {
+                const avatar = player.name.charAt(0).toUpperCase();
+                const isCreator = player.id === creatorId;
+                const isCurrent = player.id === userId;
+                
+                let badges = '';
+                if (isCreator) badges += '<span class="badge creator">👑 منشئ</span>';
+                if (player.isPlayer) badges += '<span class="badge player">🎮 لاعب</span>';
+                else badges += '<span class="badge spectator">👀 متفرج</span>';
+                if (player.joined) badges += '<span class="badge online">🟢 متصل</span>';
+                
+                html += `
+                    <div class="player-card" style="${isCurrent ? 'border: 2px solid #3b82f6;' : ''}">
+                        <div class="player-avatar">${avatar}</div>
+                        <div class="player-info">
+                            <div class="player-name">
+                                ${player.name} ${badges}
+                            </div>
+                            <div class="player-status">${player.id.substring(0, 8)}...</div>
+                        </div>
+                    </div>
+                `;
+            });
             
             elements.playersList.innerHTML = html;
-            elements.playerCount.textContent = players.length + spectators.length;
+            elements.playerCount.textContent = players.length;
+            elements.roomStatus.textContent = players.length >= 2 ? '👥 جاهز' : '⏳ انتظار';
         }
         
-        // إنشاء HTML للاعب
-        function createPlayerHTML(player, isPlayer) {
-            const avatar = player.name.charAt(0).toUpperCase();
-            const isCreator = player.id === creatorId;
-            const isCurrent = player.id === userId;
-            
-            let badges = '';
-            if (isCreator) badges += '<span class="admin-badge">👑 منشئ</span>';
-            if (isPlayer) badges += '<span class="spectator-badge">🎮 لاعب</span>';
-            else badges += '<span class="spectator-badge">👀 متفرج</span>';
-            
-            const readyStatus = player.ready ? '<span class="player-ready">✅ جاهز</span>' : '';
-            
-            return `
-                <div class="player-item" style="${isCurrent ? 'border: 2px solid #667eea;' : ''}">
-                    <div class="player-avatar">${avatar}</div>
-                    <div class="player-info">
-                        <div class="player-name">
-                            ${player.name} ${badges} ${readyStatus}
-                        </div>
-                        <div class="player-status">${player.id.substring(0, 8)}...</div>
-                    </div>
-                </div>
-            `;
-        }
-        
-        // إرسال رسالة
         function sendChatMessage() {
             const message = elements.chatInput.value.trim();
             if (!message) return;
             
             addChatMessage(userName, message, true);
             elements.chatInput.value = '';
-            
-            // هنا يتم إرسال الرسالة للخادم
         }
         
-        // إضافة رسالة للدردشة
         function addChatMessage(sender, message, isOwn = false) {
             const msgDiv = document.createElement('div');
             msgDiv.className = `chat-message ${isOwn ? 'own' : ''}`;
             msgDiv.textContent = `${sender}: ${message}`;
-            
             elements.chatMessages.appendChild(msgDiv);
             elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
         }
         
-        // الحصول على اسم اللعبة
-        function getGameName(game) {
-            const names = {
-                xo: 'XO',
-                connect4: 'Connect 4',
-                'tic-tac-toe': 'Tic Tac Toe'
-            };
-            return names[game] || game;
+        function addSystemMessage(message) {
+            const msgDiv = document.createElement('div');
+            msgDiv.className = 'chat-message system';
+            msgDiv.textContent = message;
+            elements.chatMessages.appendChild(msgDiv);
+            elements.chatMessages.scrollTop = elements.chatMessages.scrollHeight;
         }
         
         // بدء التطبيق
         init();
     </script>
 </body>
-  </html>
+    </html>
